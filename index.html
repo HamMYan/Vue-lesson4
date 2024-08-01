@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 4</title>
+    <style>
+        .divShow {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        #app>.foods {
+            border: solid black 1px;
+            width: 80%;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        figure {
+            width: 80px;
+            padding: 10px;
+            margin: 10px;
+            background-color: lightskyblue;
+            border-radius: 5px;
+        }
+
+        figcaption {
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Show and For</h1>
+        <hr><br><br><br>
+
+        <h3>Show</h3>
+        <hr><br>
+
+        <div v-show="divShow" class="divShow">
+            <p>Div is showed</p>
+        </div>
+        <hr>
+
+
+        <h3>For</h3>
+        <hr><br>
+
+        
+            <p v-for="(x,index) in manyFoods">{{index}}: {{x}}</p   >
+        
+
+        <div class="foods">
+            <figure v-for="(x,index) in manyFoodsObj">
+                <img v-bind:src="x.url" alt="">
+                <figcaption>{{index}}:  {{x.name}}</figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                const manyFoods = [
+                    'Burrito',
+                    'Salad',
+                    'Cake',
+                    'Soup',
+                    'Fish',
+                    'Pizza',
+                    'Rice'
+                ]
+
+                const manyFoodsObj = [
+                    { name: 'Burrito', url: 'https://as2.ftcdn.net/v2/jpg/01/80/42/33/1000_F_180423378_IocsOnNyVtVrA1y7ayxvDgawhq8PFsTO.jpg' },
+                    { name: 'Taco', url: 'https://media.istockphoto.com/id/1178826181/vector/taco-mexican-food.jpg?s=612x612&w=0&k=20&c=Jn9r5Np3EAUcpbcQOq6dpkyNGuzh_1CLOqTTJwnigP0=' },
+                    { name: 'Pizza', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIRJpd-1tUJ-ogGgW3eoM1PpN60l58LtmT2A&s' },
+                ]
+
+                return {
+                    divShow: true,
+                    manyFoods,
+                    manyFoodsObj
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+
+</html>
